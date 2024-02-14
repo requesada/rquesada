@@ -1,14 +1,13 @@
-import express from 'express'
-import path from 'path'
+const express = require('express')
+const path = require('path')
 
 const serverApp = express()
 const port = 3000
 const directoryName = process.cwd()
 
-serverApp.use(express.static('public'))
-
-serverApp.get('/', (req, res) => {
-    res.sendFile(path.join(directoryName, 'public/index.html'))
+serverApp.use(express.static(path.join(directoryName, 'dist')))
+serverApp.use((req, res) => {
+    res.status(200)
 })
 
 serverApp.listen(port, () => {
