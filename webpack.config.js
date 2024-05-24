@@ -1,38 +1,42 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './index.js',
-  mode: 'development',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js',
-  },
-  target: 'web',
-  devServer: {
-    port: '5000',
-    static: {
-      directory: path.join(__dirname, 'public')
-},
-    open: true,
-    hot: true,
-    liveReload: true,
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, 
-        exclude: /node_modules/, 
-        use: 'babel-loader', 
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       },
-    ],
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'public', 'index.html')
+      template: './src/index.html'
     })
-  ]
+  ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+    hot: true,
+    open: true
+  }
 }

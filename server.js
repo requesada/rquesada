@@ -6,8 +6,8 @@ const port = 3000
 const directoryName = process.cwd()
 
 serverApp.use(express.static(path.join(directoryName, 'dist')))
-serverApp.use((req, res) => {
-    res.status(200)
+serverApp.get('*', (_, res) => {
+    res.sendFile(path.join(directoryName, 'dist', 'index.html'))
 })
 
 serverApp.listen(port, () => {

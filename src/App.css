@@ -1,0 +1,35 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  min-height: 100vh;
+  color: gray;
+  background-color: black;
+  font-family: Arial, sans-serif;
+  padding-left: 100px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.image-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+
+.image-grid-item {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
