@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    // publicPath: '/'
   },
   module: {
     rules: [
@@ -46,11 +46,13 @@ module.exports = {
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist')
+      directory: path.join(__dirname, 'dist'),
+      watch: true
     },
     compress: true,
     port: 9000,
     hot: true,
-    open: true
+    open: true,
+    watchFiles: ['src/**/*.*']
   }
 }
