@@ -1,15 +1,15 @@
 import './styles.css'
-// import {gsap} from 'gsap'
+import {gsap} from 'gsap'
 
 class CoverGrid {
-  constructor(rows, columns) {
+  constructor(container, rows, columns, squareSize) {
+    this.container = document.querySelector(container)
     this.rows = rows
     this.columns = columns
-    this.grid = Array.from({length: rows}, () =>
-      Array.from({length: columns}, () => ({ backgroundColor: 'white', adjacentSquares: {} }))
+    this.squareSize = squareSize
+    this.grid = Array.from({ length: rows }, () =>
+      Array.from({ length: columns }, () => ({ backgroundColor: 'gray', adjacentSquares: {} }))
     )
-
-    this.assignAdjacentSquares()
   }
 
   getAdjacentSquares(row, column) {
@@ -47,7 +47,34 @@ class CoverGrid {
       }
     }
   }
+
+  renderGrid() {
+    this.container.style.display = 'grid'
+    this.container.style.gridTemplateColumns = `repeat(${this.columns}, ${this.squareSize}px)`
+    this.container.style.gridTemplateRows = `repeat(${this.rows}, ${this.squareSize}px)`
+
+    this.grid.forEach((row, rowIndex) => {
+      row.forEach((cell, colIndex) => {
+        const cellElement = document.createElement('div')
+        cellElement.classList.add('grid-cell')
+        cellElement.style.width = `${this.squareSize}px`
+        cellElement.style.height = `${this.squareSize}px`
+        cellElement.style.backgroundColor = cell.backgroundColor
+        cellElement.textContent = `${rowIndex},${colIndex}` // TODO: Remove or replace
+        this.container.appendChild(cellElement)
+      })
+    })
+  }
 }
 
-const coverGrid = new CoverGrid(3, 3)
-console.log(coverGrid.grid)
+const coverGrid = new CoverGrid('#grid-container', 3, 8, 50)
+
+document.addEventListener('DOMContentLoaded', () => {
+  coverGrid.assignAdjacentSquares()
+  coverGrid.renderGrid()
+  gsap.to('#content', {
+    scale: 1,
+    duration: 2,
+    ease: 'power2.out'
+  })
+})
