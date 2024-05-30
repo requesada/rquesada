@@ -1,5 +1,5 @@
 import './styles.css'
-import {gsap} from 'gsap'
+// import {gsap} from 'gsap'
 
 class CoverGrid {
   constructor(container, rows, columns, squareSize) {
@@ -69,12 +69,32 @@ class CoverGrid {
 
 const coverGrid = new CoverGrid('#grid-container', 3, 8, 50)
 
+// Cuboid faces
+const frontFace = document.querySelector('#front')
+
+let width
+let height
+
+const getDimensions = () => {
+  width = window.innerWidth
+  height = window.innerHeight
+}
+
+const setCuboidTransforms = () => {
+  frontFace.style.transform = `translateX(${width / 2}px)`
+}
+
+
+
+const onResize = () => {
+  getDimensions()
+  setCuboidTransforms()
+}
+window.addEventListener('resize', onResize)
+
 document.addEventListener('DOMContentLoaded', () => {
   coverGrid.assignAdjacentSquares()
   coverGrid.renderGrid()
-  gsap.to('#content', {
-    scale: 1,
-    duration: 2,
-    ease: 'power2.out'
-  })
+  getDimensions()
+  setCuboidTransforms()
 })
