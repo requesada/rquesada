@@ -43,7 +43,7 @@ body {
 
 #front 
 {
-  background-color: fuchsia;
+  /* background-color: fuchsia; */
 }
 #back {
   background-color: blue;
@@ -62,7 +62,7 @@ body {
   transform: rotateX(90deg) translateY(calc(-1 * var(--cuboid-width) / 2)) translateZ(calc(var(--cuboid-width) / 2));
 }
 #bottom {
-  background-color: black;
+  background-color: white;
   transform: rotateX(-90deg) translateY(calc(var(--cuboid-width) / 2)) translateZ(calc(var(--cuboid-width) / 2));
 }
 

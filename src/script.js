@@ -71,6 +71,15 @@ const coverGrid = new CoverGrid('#grid-container', 3, 8, 50)
 
 // Cuboid faces
 const frontFace = document.querySelector('#front')
+const backFace = document.querySelector('#back')
+const rightFace = document.querySelector('#right')
+const leftFace = document.querySelector('#left')
+const topFace = document.querySelector('#top')
+const bottomFace = document.querySelector('#bottom')
+
+const cuboidWidth = 300
+const cuboidHeight = 300
+const cuboidDepth = 300
 
 let width
 let height
@@ -80,8 +89,21 @@ const getDimensions = () => {
   height = window.innerHeight
 }
 
+const formatTransform = (axis, deg, xPx, yPx, zPx) => {
+  let rotation = ''
+  if (axis) {
+    rotation = `rotate${axis}(${deg}deg) `
+  }
+  return `${rotation}translate3d(${xPx}px, ${yPx}px, ${zPx}px)`
+}
+
 const setCuboidTransforms = () => {
-  frontFace.style.transform = `translateX(${width / 2}px)`
+  frontFace.style.transform = formatTransform(0, 0, (width - cuboidWidth) / 2, (height - cuboidHeight) / 2, 0)
+  backFace.style.transform = formatTransform('Y', 180, (cuboidWidth - width) / 2, (height - cuboidHeight) / 2, cuboidDepth)
+  rightFace.style.transform = formatTransform('Y', 90, cuboidDepth / 2, (height - cuboidHeight) / 2, width / 2)
+  leftFace.style.transform = formatTransform('Y', -90, -cuboidDepth / 2, (height - cuboidHeight) / 2, cuboidWidth - width / 2)
+  topFace.style.transform = formatTransform('X', 90, (width - cuboidWidth) / 2, -cuboidDepth / 2, cuboidHeight - height / 2)
+  bottomFace.style.transform = formatTransform('X', -90, (width - cuboidWidth )/ 2, cuboidDepth / 2, height / 2)
 }
 
 
