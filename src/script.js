@@ -1,4 +1,5 @@
 // import {gsap} from 'gsap'
+import gsap from 'https://cdn.skypack.dev/gsap'
 
 class CoverGrid {
   constructor(container, rows, columns, squareSize) {
@@ -6,8 +7,8 @@ class CoverGrid {
     this.rows = rows
     this.columns = columns
     this.squareSize = squareSize
-    this.grid = Array.from({ length: rows }, () =>
-      Array.from({ length: columns }, () => ({ backgroundColor: 'gray', adjacentSquares: {} }))
+    this.grid = Array.from({length: rows}, () =>
+      Array.from({length: columns}, () => ({backgroundColor: 'gray', adjacentSquares: {}}))
     )
   }
 
@@ -69,19 +70,39 @@ class CoverGrid {
 const coverGrid = new CoverGrid('#grid-container', 3, 8, 50)
 
 // Individual faces
-const frontFace = document.querySelector('#front')
+// const frontFace = document.querySelector('#front')
 const backFace = document.querySelector('#back')
 const rightFace = document.querySelector('#right')
 const leftFace = document.querySelector('#left')
 const topFace = document.querySelector('#top')
 const bottomFace = document.querySelector('#bottom')
+const cuboid = document.querySelector('#cuboid')
+
 
 let width
 let height
 
 // const cuboidWidth = width
 // const cuboidHeight = height
-const cuboidDepth = 300
+const cuboidDepth = {value: 6000}
+const perspectiveOrigin = {value: 50}
+
+const changeDepth = () => {
+  gsap.to(cuboidDepth, {
+    value: 200,
+    duration: 1,
+    onUpdate: setCuboidTransforms,
+    ease: 'power1.in'
+  })
+  gsap.to(perspectiveOrigin, {
+    value: 100,
+    duration: 1,
+    onUpdate: setCuboidTransforms,
+    ease: 'power1.in'
+  })
+}
+
+backFace.addEventListener('click', changeDepth)
 
 const getDimensions = () => {
   width = window.innerWidth - 10
@@ -97,28 +118,30 @@ const formatTransform = (axis, deg, xPx, yPx, zPx) => {
 }
 
 const setCuboidTransforms = () => {
-  frontFace.style.width = `${width}px`
-  frontFace.style.height = `${height}px`
+  cuboid.style.perspectiveOrigin = `${perspectiveOrigin.value}% 100%`
 
-  backFace.style.transform = formatTransform('Y', 180, 0, 0, cuboidDepth)
+  // frontFace.style.width = `${width}px`
+  // frontFace.style.height = `${height}px`
+
+  backFace.style.transform = formatTransform('Y', 180, 0, 0, cuboidDepth.value)
   backFace.style.width = `${width}px`
   backFace.style.height = `${height}px`
 
-  rightFace.style.transform = formatTransform('Y', 90, cuboidDepth / 2, 0, width - cuboidDepth / 2)
-  rightFace.style.width = `${cuboidDepth}px`
+  rightFace.style.transform = formatTransform('Y', 90, cuboidDepth.value / 2, 0, width - cuboidDepth.value / 2)
+  rightFace.style.width = `${cuboidDepth.value}px`
   rightFace.style.height = `${height}px`
 
-  leftFace.style.transform = formatTransform('Y', -90, -cuboidDepth / 2, 0, cuboidDepth / 2)
-  leftFace.style.width = `${cuboidDepth}px`
+  leftFace.style.transform = formatTransform('Y', -90, -cuboidDepth.value / 2, 0, cuboidDepth.value / 2)
+  leftFace.style.width = `${cuboidDepth.value}px`
   leftFace.style.height = `${height}px`
 
-  topFace.style.transform = formatTransform('X', 90, 0, -cuboidDepth / 2, cuboidDepth / 2)
+  topFace.style.transform = formatTransform('X', 90, 0, -cuboidDepth.value / 2, cuboidDepth.value / 2)
   topFace.style.width = `${width}px`
-  topFace.style.height = `${cuboidDepth}px`
+  topFace.style.height = `${cuboidDepth.value}px`
 
-  bottomFace.style.transform = formatTransform('X', -90, 0, cuboidDepth / 2, height - cuboidDepth / 2)
+  bottomFace.style.transform = formatTransform('X', -90, 0, cuboidDepth.value / 2, height - cuboidDepth.value / 2)
   bottomFace.style.width = `${width}px`
-  bottomFace.style.height = `${cuboidDepth}px`
+  bottomFace.style.height = `${cuboidDepth.value}px`
 }
 
 

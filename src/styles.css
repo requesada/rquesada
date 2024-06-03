@@ -23,20 +23,21 @@ body {
   z-index: 0;
 }
 
-.cuboid {
+#cuboid {
   perspective: 2000px;
-  perspective-origin: bottom right;
+  /* perspective-origin: 50% 100%; */
   transform-style: preserve-3d;
   position: relative;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 .face {
   position: absolute;
   /* width: var(--cuboid-width);
   height: var(--cuboid-width); */
-  border: 2px solid #fff;
+  /* border: 5px solid #fff; */
   box-sizing: border-box;
   /* opacity: 0.6; */
 }
@@ -52,13 +53,15 @@ body {
   background-color: transparent;
 }
 #back {
-  background-color: blue;
+  /* background-color: blue; */
+  border: 5px solid #fff;
+  pointer-events: auto;
   /* transform: rotateY(180deg) translateZ(var(--cuboid-width)); */
 }
-#right {
-  background-color: red;
+/* #right { */
+  /* background-color: red; */
   /* transform: rotateY(90deg) translateX(calc(var(--cuboid-width) / 2)) translateZ(calc(var(--cuboid-width) / 2)); */
-}
+/* } */
 #left {
   background-color: white;
   mask-image: url("images/roberto.svg#svgView(preserveAspectRatio(none))");
@@ -73,7 +76,7 @@ body {
   /* transform: rotateX(90deg) translateY(calc(-1 * var(--cuboid-width) / 2)) translateZ(calc(var(--cuboid-width) / 2)); */
 }
 #bottom {
-  background-color: white;
+  /* background-color: white; */
   /* transform: rotateX(-90deg) translateY(calc(var(--cuboid-width) / 2)) translateZ(calc(var(--cuboid-width) / 2)); */
 }
 
