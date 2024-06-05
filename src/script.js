@@ -48,6 +48,16 @@ const setCuboidTransforms = () => {
   topFace.style.height = `${cuboidDepth.value}px`
 }
 
+const appendCells = () => {
+  const gridContainer = document.querySelector('#grid-container')
+  for (let i = 0; i < 25; i++) {
+    const gridCell = document.createElement('div')
+    gridCell.className = 'grid-cell'
+    gridCell.textContent = i
+    gridContainer.appendChild(gridCell)
+  }
+}
+
 const onResize = () => {
   getDimensions()
   setCuboidTransforms()
@@ -57,4 +67,5 @@ window.addEventListener('resize', onResize)
 document.addEventListener('DOMContentLoaded', () => {
   getDimensions()
   setCuboidTransforms()
+  appendCells()
 })
