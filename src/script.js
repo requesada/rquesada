@@ -10,12 +10,32 @@ let height
 
 const cuboidDepth = {value: 6000}
 
+const randomActivation = setInterval(() => {
+  const index = randomIndex()
+  gsap.to(`#cell-${index}`, {
+    backgroundColor: 'red',
+    duration: randomDuration(),
+    ease: 'elastic.out(1, 0.1)',
+    onComplete: () => {
+      gsap.to(`#cell-${index}`, {
+        backgroundColor: 'black',
+        duration: 0.25
+      })
+    }
+  })
+}, 1000)
+
+let depthChanged = false
 const changeDepth = () => {
   gsap.to(cuboidDepth, {
     value: 200,
-    duration: 1,
+    duration: 0.5,
+    ease: 'power1.in',
     onUpdate: setCuboidTransforms,
-    ease: 'power1.in'
+    onComplete: () => {
+    depthChanged = true,
+    clearInterval(randomActivation)
+    }
   })
 }
 
@@ -64,19 +84,43 @@ const findAdjacentCells = (index) => {
   return {top, bottom, left, right}
 }
 
+const randomIndex = gsap.utils.random(0, Math.pow(gridSide, 2), 1, true)
+const randomDuration = gsap.utils.random(0.1, 2, 0.1, true)
+
+const lightOff = (cellID) => {
+  if (depthChanged) {
+    gsap.killTweensOf(`#${cellID}`)
+    gsap.to(`#${cellID}`, {
+      backgroundColor: 'black',
+      duration: 0
+    })
+  }
+}
+const lightOn = (cellID) => {
+  if (depthChanged) {
+    gsap.to(`#${cellID}`, {
+      backgroundColor: 'red',
+      duration: 0.5,
+      ease: 'elastic.out(1, 0.1)',
+      onInterrupt: lightOff
+    })
+  }
+}
+
 const cellLayout = {}
 const gridContainer = document.querySelector('#grid-container')
 for (let i = 0; i < Math.pow(gridSide, 2); i++) {
   const gridCell = document.createElement('div')
   gridCell.className = 'grid-cell'
-  gridCell.id = `cell-${i}`
   gridCell.textContent = i
   gridContainer.appendChild(gridCell)
-
-  cellLayout[gridCell.id] = findAdjacentCells(i)
+  
+  const cellID = `cell-${i}`
+  gridCell.id = cellID
+  cellLayout[cellID] = findAdjacentCells(i)
+  document.querySelector(`#${cellID}`).addEventListener('mouseenter', () => lightOn(cellID))
+  document.querySelector(`#${cellID}`).addEventListener('mouseleave', () => lightOff(cellID))
 }
-
-
 
 const onResize = () => {
   getDimensions()
@@ -87,5 +131,4 @@ window.addEventListener('resize', onResize)
 document.addEventListener('DOMContentLoaded', () => {
   getDimensions()
   setCuboidTransforms()
-  console.log({cellLayout})
 })
