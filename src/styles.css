@@ -1,5 +1,6 @@
 :root {
   --cuboid-width: 300px;
+  --grid-side: 0;
 }
 
 html, body {
@@ -69,8 +70,8 @@ h1 {
 
 #grid-container {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(var(--grid-side), 1fr);
+  grid-template-columns: repeat(var(--grid-side), 1fr);
   height: 100%;
   width: 100%;
 }
@@ -80,4 +81,5 @@ h1 {
   align-items: center;
   justify-content: center;
   border: 2px solid white;
+  color: white;
 }

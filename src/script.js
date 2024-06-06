@@ -48,15 +48,35 @@ const setCuboidTransforms = () => {
   topFace.style.height = `${cuboidDepth.value}px`
 }
 
-const appendCells = () => {
-  const gridContainer = document.querySelector('#grid-container')
-  for (let i = 0; i < 25; i++) {
-    const gridCell = document.createElement('div')
-    gridCell.className = 'grid-cell'
-    gridCell.textContent = i
-    gridContainer.appendChild(gridCell)
-  }
+const gridSide = 5
+const root = document.querySelector(':root')
+root.style.setProperty('--grid-side', gridSide)
+
+const findAdjacentCells = (index) => {
+  const row = Math.floor(index / gridSide)
+  const col = index % gridSide
+
+  const top = row > 0 ? `cell-${index - gridSide}` : null
+  const bottom = row < gridSide - 1 ? `cell-${index + gridSide}` : null
+  const left = col > 0 ? `cell-${index - 1}` : null
+  const right = col < gridSide - 1 ? `cell-${index + 1}` : null
+
+  return {top, bottom, left, right}
 }
+
+const cellLayout = {}
+const gridContainer = document.querySelector('#grid-container')
+for (let i = 0; i < Math.pow(gridSide, 2); i++) {
+  const gridCell = document.createElement('div')
+  gridCell.className = 'grid-cell'
+  gridCell.id = `cell-${i}`
+  gridCell.textContent = i
+  gridContainer.appendChild(gridCell)
+
+  cellLayout[gridCell.id] = findAdjacentCells(i)
+}
+
+
 
 const onResize = () => {
   getDimensions()
@@ -67,5 +87,5 @@ window.addEventListener('resize', onResize)
 document.addEventListener('DOMContentLoaded', () => {
   getDimensions()
   setCuboidTransforms()
-  appendCells()
+  console.log({cellLayout})
 })
