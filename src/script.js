@@ -117,7 +117,7 @@ const triggerCascade = (cellID) => {
     cascadeStarted = true
     if (cellID && !cellLayout[cellID].isTriggered) {
     gsap.to(`#${cellID}`, {
-      backgroundColor: 'red',
+      backgroundColor: 'transparent',
       duration: 0.1,
       onComplete: () => {
         cellLayout[cellID].adjacentCells.forEach((cell) => triggerCascade(cell))
