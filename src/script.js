@@ -21,12 +21,14 @@ const randomActivation = setInterval(() => {
         backgroundColor: 'black',
         duration: 0.25
       })
-    }
+    },
+    onInterrupt: () => lightOff(`cell-${index}`)
   })
 }, 1000)
 
 let depthChanged = false
 const changeDepth = () => {
+  gsap.killTweensOf('.face')
   gsap.to(cuboidDepth, {
     value: 200,
     duration: 0.5,
@@ -102,7 +104,7 @@ const lightOn = (cellID) => {
       backgroundColor: 'red',
       duration: 0.5,
       ease: 'elastic.out(1, 0.1)',
-      onInterrupt: lightOff
+      onInterrupt: () => lightOff(cellID)
     })
   }
 }
