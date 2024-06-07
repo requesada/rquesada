@@ -17,10 +17,12 @@ const randomActivation = setInterval(() => {
     duration: randomDuration(),
     ease: 'elastic.out(1, 0.1)',
     onComplete: () => {
-      gsap.to(`#cell-${index}`, {
-        backgroundColor: 'black',
-        duration: 0.25
-      })
+      if (!cascadeStarted) {
+        gsap.to(`#cell-${index}`, {
+          backgroundColor: 'black',
+          duration: 0.25
+        })
+      }
     },
     onInterrupt: () => lightOff(`cell-${index}`)
   })
@@ -83,14 +85,15 @@ const findAdjacentCells = (index) => {
   const left = col > 0 ? `cell-${index - 1}` : null
   const right = col < gridSide - 1 ? `cell-${index + 1}` : null
 
-  return {top, bottom, left, right}
+  return {adjacentCells: [top, bottom, left, right], isTriggered: false}
 }
 
 const randomIndex = gsap.utils.random(0, Math.pow(gridSide, 2), 1, true)
 const randomDuration = gsap.utils.random(0.1, 2, 0.1, true)
 
+let cascadeStarted = false
 const lightOff = (cellID) => {
-  if (depthChanged) {
+  if (depthChanged && !cascadeStarted) {
     gsap.killTweensOf(`#${cellID}`)
     gsap.to(`#${cellID}`, {
       backgroundColor: 'black',
@@ -99,13 +102,29 @@ const lightOff = (cellID) => {
   }
 }
 const lightOn = (cellID) => {
-  if (depthChanged) {
+  if (depthChanged && !cascadeStarted) {
     gsap.to(`#${cellID}`, {
       backgroundColor: 'red',
       duration: 0.5,
       ease: 'elastic.out(1, 0.1)',
       onInterrupt: () => lightOff(cellID)
     })
+  }
+}
+
+const triggerCascade = (cellID) => {
+  if (depthChanged) {
+    cascadeStarted = true
+    if (cellID && !cellLayout[cellID].isTriggered) {
+    gsap.to(`#${cellID}`, {
+      backgroundColor: 'red',
+      duration: 0.1,
+      onComplete: () => {
+        cellLayout[cellID].adjacentCells.forEach((cell) => triggerCascade(cell))
+        cellLayout[cellID].isTriggered = true
+      }
+    })
+    }
   }
 }
 
@@ -122,6 +141,7 @@ for (let i = 0; i < Math.pow(gridSide, 2); i++) {
   cellLayout[cellID] = findAdjacentCells(i)
   document.querySelector(`#${cellID}`).addEventListener('mouseenter', () => lightOn(cellID))
   document.querySelector(`#${cellID}`).addEventListener('mouseleave', () => lightOff(cellID))
+  document.querySelector(`#${cellID}`).addEventListener('click', () => triggerCascade(cellID))
 }
 
 const onResize = () => {
