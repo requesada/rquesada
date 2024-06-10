@@ -116,14 +116,15 @@ const triggerCascade = (cellID) => {
   if (depthChanged) {
     cascadeStarted = true
     if (cellID && !cellLayout[cellID].isTriggered) {
-    gsap.to(`#${cellID}`, {
-      backgroundColor: 'transparent',
-      duration: 0.1,
-      onComplete: () => {
-        cellLayout[cellID].adjacentCells.forEach((cell) => triggerCascade(cell))
-        cellLayout[cellID].isTriggered = true
-      }
-    })
+      gsap.killTweensOf(`#${cellID}`)
+      gsap.to(`#${cellID}`, {
+        backgroundColor: 'transparent',
+        duration: 0.1,
+        onComplete: () => {
+          cellLayout[cellID].adjacentCells.forEach((cell) => triggerCascade(cell))
+          cellLayout[cellID].isTriggered = true
+        }
+      })
     }
   }
 }
