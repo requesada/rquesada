@@ -3,6 +3,11 @@
   --grid-side: 0;
 }
 
+@font-face {
+  font-family: afacad;
+  src: url(fonts/Afacad.ttf);
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -86,9 +91,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  z-index: 10;
-  background-image: url("images/test.jpg");
 }
 
 #grid-container {
@@ -97,6 +99,35 @@ body {
   grid-template-columns: repeat(var(--grid-side), 1fr);
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#flower-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  img {
+    height: 90%;
+  }
+}
+
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: afacad;
+  font-size: 5em;
+  width: 50%;
+  color: white;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .grid-cell {
