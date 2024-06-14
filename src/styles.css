@@ -1,6 +1,5 @@
 :root {
   --cuboid-width: 300px;
-  --grid-side: 0;
 }
 
 @font-face {
@@ -13,6 +12,7 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -93,15 +93,33 @@ body {
   align-items: center;
 }
 
-#grid-container {
-  display: grid;
-  grid-template-rows: repeat(var(--grid-side), 1fr);
-  grid-template-columns: repeat(var(--grid-side), 1fr);
+#curtains {
+  display: flex;
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  clip-path: rect(auto auto auto auto);
+}
+
+.curtain {
+  height: 100%;
+  width: 100%;
+}
+
+#left-container {
+  background-image: url(images/left.png);
+  background-size: cover;
+  position: relative;
+  left: 0;
+}
+
+#right-container {
+  background-image: url(images/right.png);
+  background-size: cover;
+  position: relative;
+  right: 0;
 }
 
 #flower-container {
@@ -128,11 +146,4 @@ body {
     padding: 0;
     margin: 0;
   }
-}
-
-.grid-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
 }
