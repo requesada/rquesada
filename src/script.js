@@ -10,6 +10,8 @@ const bottomFace = document.querySelector('#bottom')
 let width
 let height
 
+// const colors = ['#002d7a', '#b8d6bc']
+
 const cuboidDepth = {value: 6000}
 
 const changeDepth = () => {
@@ -17,18 +19,26 @@ const changeDepth = () => {
   gsap.to(cuboidDepth, {
     value: 200,
     duration: 0.5,
-    ease: 'power1.in',
+    ease: 'power4.out',
     onUpdate: setCuboidTransforms,
     onComplete: () => {
       gsap.to('#left-container', {
         x: '-100%',
         ease: 'power4.out',
-        duration: 1.5
+        duration: 0.5
       })
       gsap.to('#right-container', {
         x: '100%',
         ease: 'power4.out',
-        duration: 1.5
+        duration: 0.5,
+        onComplete: () => {
+          document.querySelector('body').style.overflow = 'hidden visible'
+          document.querySelector('.cuboid-container').style.position = 'static'
+          document.querySelector('#roberto').style.filter = 'invert(94%) sepia(15%) saturate(403%) hue-rotate(67deg) brightness(92%) contrast(82%)'
+          document.querySelector('#quesada').style.filter = 'invert(94%) sepia(15%) saturate(403%) hue-rotate(67deg) brightness(92%) contrast(82%)'
+          document.querySelector('#top').style.backgroundColor = '#002d7a'
+          document.querySelector('#left').style.backgroundColor = '#002d7a'
+        }
       })
     }
   })
