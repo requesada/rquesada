@@ -186,6 +186,7 @@ h1 {
 
 h3 {
   font-size: 3em;
+  line-height: 0.7;
 }
 
 h4 {
@@ -241,33 +242,20 @@ p {
 }
 
 #pomodoro-blacklist {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(6, 4em);
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-#pb-title {
-  grid-column: 1;
-  grid-row: 1;
-  /* align-self: start; */
+#pb-box {
+  display: flex;
+  gap: 20px;
 }
 
-#figma-image-container {
-  grid-column: 2;
-  grid-row: 1 / 7;
+.pb-box-left, .pb-box-right {
+  box-sizing: border-box;
+  width: 50%;
 
   img {
-    /* height: 100%; */
     width: 100%;
   }
-}
-
-.pb-text {
-  grid-column: 1;
-  grid-row: 2 / 7;
-}
-
-.pb-text > p:first-child {
-  margin-top: 0;
 }
