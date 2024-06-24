@@ -187,6 +187,7 @@ h1 {
 h3 {
   font-size: 3em;
   line-height: 0.7;
+  display: inline-block;
 }
 
 h4 {
@@ -253,7 +254,7 @@ p:first-child {
 .pb-box {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;;
+  margin-bottom: 40px;
 }
 
 .pb-box-left, .pb-box-right {
