@@ -272,3 +272,14 @@ p:first-child {
     float: right;
   }
 }
+
+#block-screens {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+  img {
+    max-width: 20%;
+    border-radius: 14px;
+  }
+}
