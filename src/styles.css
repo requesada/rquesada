@@ -237,8 +237,8 @@ p:first-child {
 
 #title-menu {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 4fr;
   margin-bottom: 100px;
 }
 
@@ -247,6 +247,7 @@ p:first-child {
 }
 
 #name {
+  transform: translateY(148px);
   grid-column: 2 / 3;
   grid-row: 1;
   display: flex;
@@ -255,7 +256,9 @@ p:first-child {
   border-top: 10px solid white;
   border-right: 10px solid white;
   border-left: 10px solid white;
-  border-radius: 150px 150px 0 0;
+  border-radius: 100px 100px 0 0;
+  height: 148px;
+  align-self: end;
 }
 
 .menu-item {
@@ -263,14 +266,17 @@ p:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 148px;
 }
 
 #portfolio {
+  transform: translateX(148px);
+  justify-self: end;
   grid-column: 1;
   border-top: 10px solid white;
   border-bottom: 10px solid white;
   border-left: 10px solid white;
-  border-radius: 150px 0 0 150px;
+  border-radius: 100px 0 0 100px;
   
   h2 {
     transform: rotate(-90deg);
@@ -278,11 +284,12 @@ p:first-child {
 }
 
 #resume {
+  transform: translateX(-148px);
   grid-column: 3;
   border-top: 10px solid white;
   border-right: 10px solid white;
   border-bottom: 10px solid white;
-  border-radius: 0 150px 150px 0;
+  border-radius: 0 100px 100px 0;
 
   h2 {
     transform: rotate(90deg);
@@ -297,10 +304,17 @@ p:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
+  z-index: 10;
 
-  img {
+  svg {
     max-width: 100%;
+    /* transform: rotate(90deg); */
   }
+}
+
+#test-container {
+  background-color: white;
 }
 
 #pomodoro-blacklist {

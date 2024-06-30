@@ -1,5 +1,30 @@
 // import {gsap} from 'gsap'
-// import gsap from 'https://cdn.skypack.dev/gsap'
+// import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import gsap from 'https://cdn.skypack.dev/gsap'
+import ScrollTrigger from 'https://cdn.skypack.dev/gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger) 
+
+gsap.to(['#name', '.menu-item'], {
+  x: 0,
+  y: 0,
+  duration: 1
+})
+
+gsap.to('#flower-five', {
+  scrollTrigger: {
+    scrub: true,
+  },
+  rotation: 180,
+  transformOrigin: 'center center'
+})
+
+gsap.to('#flower-six', {
+  scrollTrigger: {
+    scrub: true,
+  },
+  rotation: -180,
+  transformOrigin: 'center center'
+})
 
 // const backFace = document.querySelector('#back')
 // const leftFace = document.querySelector('#left')
