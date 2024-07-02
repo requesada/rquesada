@@ -20,7 +20,6 @@ body {
   margin: 0 7%;
   color: white;
   font-family: afacad;
-  /* overflow: hidden; */
 }
 
 a {
@@ -49,6 +48,7 @@ h1, h2 {
 
 h1 {
   text-transform: uppercase;
+  display: inline-block;
 }
 
 h3 {
@@ -70,41 +70,28 @@ p:first-child {
   margin-top: -0.3em;
 }
 
-#title-menu {
-  /* display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 4fr; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 100px;
-}
-
-#name, #flower-vase-container, .menu-item {
+#top-bar, #flower-vase-container, .menu-item {
   box-sizing: border-box;
 }
 
-#name {
-  /* transform: translateY(148px);
-  grid-column: 2 / 3;
-  grid-row: 1; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border-top: 10px solid white;
-  border-right: 10px solid white;
-  border-left: 10px solid white;
-  border-radius: 100px 100px 0 0; */
+#top-bar {
+  background-color: black;
   height: 148px;
-  /* align-self: end; */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  border-bottom-width: 0;
 }
 
 #menu-row {
   display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
 .menu-item {
-  /* grid-row: 2; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +101,6 @@ p:first-child {
 #portfolio {
   transform: translateX(148px);
   justify-self: end;
-  /* grid-column: 1; */
   border-top: 10px solid white;
   border-bottom: 10px solid white;
   border-left: 10px solid white;
@@ -127,7 +113,6 @@ p:first-child {
 
 #resume {
   transform: translateX(-148px);
-  /* grid-column: 3; */
   border-top: 10px solid white;
   border-right: 10px solid white;
   border-bottom: 10px solid white;
@@ -139,15 +124,13 @@ p:first-child {
 }
 
 #flower-vase-container {
-  /* grid-column: 2 / 3;
-  grid-row: 2 / 3; */
   padding: 50px;
   border: 10px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
-  z-index: 10;
+  z-index: 5;
 
   svg {
     max-width: 100%;
