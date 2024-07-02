@@ -242,6 +242,12 @@ p:first-child {
   margin-bottom: 100px;
 }
 
+/* @media (orientation: portrait) {
+  #title-menu {
+    transform: rotate(90deg);
+  }
+} */
+
 #name, #flower-vase-container, .menu-item {
   box-sizing: border-box;
 }
