@@ -40,6 +40,7 @@ h1 {
   display: inline-block;
   position: relative;
   top: -100%;
+  cursor: default;
 }
 
 h3 {
@@ -98,7 +99,7 @@ p:first-child {
   right: 0;
 }
 
-#top-bar-menu > div {
+.top-bar-menu-item {
   height: 100%;
   display: inline-flex;
   align-items: center;
@@ -106,20 +107,14 @@ p:first-child {
   top: -100%;
   font-size: 2em;
   padding: 0 1em;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* #top-bar-portfolio {
-  color: var(--primary);
-  background-color: var(--secondary);
-  border-bottom: 3px solid var(--secondary);
+#top-bar-arrow {
+  font-weight: bold;
 }
 
-#top-bar-resume {
-  color: var(--secondary);
-  background-color: var(--primary);
-  border-bottom: 3px solid var(--primary);
-} */
- 
 #menu-row {
   display: flex;
   justify-content: center;

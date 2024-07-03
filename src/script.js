@@ -19,26 +19,29 @@ topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
 
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
-const menuItemArray = [menuItemPortfolio, menuItemResume]
+const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
+const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems]
 
 menuItemArray.forEach((element) => {
   const menuItemAnimation = gsap.to(element, {
     paused: true,
     color: color.primary,
-    backgroundColor: color.secondary
+    backgroundColor: color.secondary,
+    duration: 0.25,
+    ease: 'power4.out'
   })
 
-  console.log(`#${element.id.split('-')[2]}-anchor`)
-  
   element.addEventListener('mouseenter', () => menuItemAnimation.play())
   element.addEventListener('mouseleave', () => menuItemAnimation.reverse())
+  
+  const identifier = element.id.split('-')[2]
   element.addEventListener('click', () => {
     gsap.to(window, {
       duration: 2,
       ease: 'power2.out',
       scrollTo: {
-        y: `#${element.id.split('-')[2]}-anchor`,
-        offsetY: 200
+        y: identifier === 'arrow' ? 0 : `#${identifier}-anchor`,
+        offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') ? 100 : 200
       }
     })
   })
@@ -86,10 +89,10 @@ gsap.to(topBar, {
         ease: 'back.out',
         stagger: 0.1
       })
-      gsap.to('#menu-item-portfolio', {
+      gsap.to(menuItemPortfolio, {
         x: '148px'
       })
-      gsap.to('#menu-item-resume', {
+      gsap.to(menuItemResume, {
         x: '-148px'
       })
     }
