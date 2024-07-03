@@ -5,6 +5,10 @@
   --main-visited-link: #889e8b;
 }
 
+::selection {
+  background-color: var(--secondary);
+}
+
 @font-face {
   font-family: afacad;
   src: url(fonts/Afacad.ttf);
@@ -83,7 +87,7 @@ p:first-child {
   top: 0;
   z-index: 10;
   border-bottom-style: solid;
-  border-bottom-color: white;
+  border-bottom-color: var(--secondary);
   border-bottom-width: 0;
 }
 
@@ -127,6 +131,7 @@ p:first-child {
   justify-content: center;
   align-items: center;
   width: 148px;
+  user-select: none;
 }
 
 .menu-item:hover {

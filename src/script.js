@@ -57,13 +57,14 @@ gsap.to('.menu-item', {
 
 gsap.to(topBar, {
   scrollTrigger: {
-    scrub: true,
+    scrub: 0.5,
     trigger: '#menu-row',
     start: 'top top',
     end: 'bottom top',
     onEnterBack: () => {
       gsap.to(topBar, {
         borderBottomWidth: '0',
+        color: 'white',
         ease: 'power1.out'
       })
       gsap.to('#top-bar-menu > div', {
@@ -77,6 +78,7 @@ gsap.to(topBar, {
     onLeave: () => {
       gsap.to(topBar, {
         borderBottomWidth: '3px',
+        color: color.primary,
         ease: 'power1.out'
       })
       gsap.to('#top-bar-menu > div', {
@@ -111,7 +113,7 @@ gsap.fromTo(nameHeading, {
 
 gsap.to('#flower-five', {
   scrollTrigger: {
-    scrub: true,
+    scrub: 2,
   },
   rotation: 180,
   transformOrigin: 'center center'
@@ -119,7 +121,7 @@ gsap.to('#flower-five', {
 
 gsap.to('#flower-six', {
   scrollTrigger: {
-    scrub: true,
+    scrub: 2,
   },
   rotation: -180,
   transformOrigin: 'center center'
