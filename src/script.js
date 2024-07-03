@@ -40,7 +40,7 @@ menuItemArray.forEach((element) => {
       duration: 2,
       ease: 'power2.out',
       scrollTo: {
-        y: identifier === 'arrow' ? 0 : `#${identifier}-anchor`,
+        y: identifier === 'arrow' ? 0 : `#${identifier}-title`,
         offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') ? 100 : 200
       }
     })
