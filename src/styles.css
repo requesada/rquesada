@@ -173,8 +173,8 @@ p:first-child {
   }
 }
 
-#test-container {
-  background-color: white;
+#portfolio-title {
+  text-transform: uppercase;
 }
 
 #pomodoro-blacklist {
