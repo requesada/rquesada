@@ -22,6 +22,8 @@ const menuItemResume = document.querySelector('#menu-item-resume')
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
 const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems]
 
+const sectionTitleNodes = document.querySelectorAll('.section-title')
+
 menuItemArray.forEach((element) => {
   const menuItemAnimation = gsap.to(element, {
     paused: true,
@@ -35,12 +37,14 @@ menuItemArray.forEach((element) => {
   element.addEventListener('mouseleave', () => menuItemAnimation.reverse())
   
   const identifier = element.id.split('-')[2]
+  const sectionElement = Array.from(sectionTitleNodes).find((node) => node.innerText.toLowerCase() === element.innerText.toLowerCase())
+
   element.addEventListener('click', () => {
     gsap.to(window, {
       duration: 2,
       ease: 'power2.out',
       scrollTo: {
-        y: identifier === 'arrow' ? 0 : `#${identifier}-title`,
+        y: identifier === 'arrow' ? 0 : sectionElement,
         offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') ? 100 : 200
       }
     })

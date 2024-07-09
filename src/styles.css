@@ -173,7 +173,7 @@ p:first-child {
   }
 }
 
-#portfolio-title {
+.section-title {
   text-transform: uppercase;
   margin-bottom: 40px;
  
@@ -185,6 +185,7 @@ p:first-child {
 #pomodoro-blacklist {
   display: flex;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .pb-box {
