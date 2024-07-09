@@ -233,3 +233,11 @@ p:first-child {
     border-radius: 14px;
   }
 }
+
+.resume-section {
+  margin-bottom: 40px;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+}
