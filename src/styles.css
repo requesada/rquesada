@@ -182,10 +182,13 @@ p:first-child {
   }
 }
 
+.page-section {
+  margin-bottom: 100px;
+}
+
 #pomodoro-blacklist {
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
 }
 
 .pb-box {
