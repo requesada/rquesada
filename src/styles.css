@@ -41,6 +41,7 @@ h1 {
   position: relative;
   top: -100%;
   cursor: default;
+  white-space: nowrap;
 }
 
 h3 {
@@ -183,7 +184,7 @@ p:first-child {
 }
 
 .page-section {
-  margin-bottom: 100px;
+  margin-bottom: 300px;
 }
 
 #pomodoro-blacklist {

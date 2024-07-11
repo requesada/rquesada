@@ -13,9 +13,17 @@ const color = {
 
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
-const topBarWidth = topBar.getBoundingClientRect().width
-const nameWidth = nameHeading.getBoundingClientRect().width
-topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
+
+const setTopBarPadding = () => {
+  const topBarWidth = topBar.getBoundingClientRect().width
+  const nameWidth = nameHeading.getBoundingClientRect().width
+  topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
+}
+setTopBarPadding()
+window.addEventListener('resize', () => {
+  console.log('hi')
+  setTopBarPadding()
+})
 
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
