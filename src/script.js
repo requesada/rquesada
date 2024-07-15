@@ -14,16 +14,15 @@ const color = {
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
 
-const setTopBarPadding = () => {
-  const topBarWidth = topBar.getBoundingClientRect().width
-  const nameWidth = nameHeading.getBoundingClientRect().width
-  topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
-}
-setTopBarPadding()
-window.addEventListener('resize', () => {
-  console.log('hi')
-  setTopBarPadding()
-})
+// const setTopBarPadding = () => {
+//   const topBarWidth = topBar.getBoundingClientRect().width
+//   const nameWidth = nameHeading.getBoundingClientRect().width
+//   topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
+// }
+// setTopBarPadding()
+// window.addEventListener('resize', () => {
+//   setTopBarPadding()
+// })
 
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
@@ -61,7 +60,8 @@ menuItemArray.forEach((element) => {
 
 gsap.to('#top-bar h1', {
   top: 0,
-  ease: 'back.out'
+  duration: 2,
+  ease: 'power4.out'
 })
 
 gsap.to('.menu-item', {
@@ -109,15 +109,12 @@ gsap.to(topBar, {
       })
     }
   },
-  height: '3em',
+  height: '3rem',
   paddingLeft: 0,
 })
 
-gsap.fromTo(nameHeading, {
-  fontSize: '6em'
-},
-{
-    fontSize: '2em',
+gsap.to(nameHeading, {
+    fontSize: '2rem',
     scrollTrigger: {
       scrub: true,
       trigger: '#menu-row',

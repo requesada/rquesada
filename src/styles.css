@@ -32,7 +32,7 @@ h1, h2, h3, h4 {
 }
 
 h1, h2 {
-  font-size: 6em;
+  font-size: clamp(2rem, 10vw, 6rem);
 }
 
 h1 {
@@ -45,17 +45,17 @@ h1 {
 }
 
 h3 {
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 0.7;
   display: inline-block;
 }
 
 h4 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
 }
 
 p {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   max-width: 100%;
 
   a {
@@ -75,7 +75,7 @@ p {
 }
 
 p:first-child {
-  margin-top: -0.3em;
+  margin-top: -0.3rem;
 }
 
 #top-bar, #flower-vase-container, .menu-item {
@@ -91,6 +91,7 @@ p:first-child {
   border-bottom-style: solid;
   border-bottom-color: var(--secondary);
   border-bottom-width: 0;
+  padding-left: clamp(0, 10vw, 10rem); /* TODO */
 }
 
 #top-bar-menu {
@@ -98,6 +99,7 @@ p:first-child {
   display: inline-flex;
   position: absolute;
   right: 0;
+  text-align: center;
 }
 
 .top-bar-menu-item {
@@ -106,8 +108,8 @@ p:first-child {
   align-items: center;
   position: relative;
   top: -100%;
-  font-size: 2em;
-  padding: 0 1em;
+  font-size: 2rem;
+  padding: 0 1rem;
   cursor: pointer;
   user-select: none;
 }
@@ -137,10 +139,10 @@ p:first-child {
 #menu-item-portfolio {
   transform: translateX(148px);
   justify-self: end;
-  border-top: 10px solid white;
+  /* border-top: 10px solid white;
   border-bottom: 10px solid white;
   border-left: 10px solid white;
-  border-radius: 100px 0 0 100px;
+  border-radius: 100px 0 0 100px; */
   
   h2 {
     transform: rotate(-90deg);
@@ -149,10 +151,10 @@ p:first-child {
 
 #menu-item-resume {
   transform: translateX(-148px);
-  border-top: 10px solid white;
+  /* border-top: 10px solid white;
   border-right: 10px solid white;
   border-bottom: 10px solid white;
-  border-radius: 0 100px 100px 0;
+  border-radius: 0 100px 100px 0; */
 
   h2 {
     transform: rotate(90deg);
@@ -170,6 +172,7 @@ p:first-child {
 
   svg {
     max-width: 100%;
+    transform: scaleX(-1);
     /* transform: rotate(90deg); */
   }
 }
