@@ -70,57 +70,73 @@ gsap.to('.menu-item', {
   ease: 'power4.out'
 })
 
-gsap.to(topBar, {
-  scrollTrigger: {
-    scrub: 0.5,
-    trigger: '#menu-row',
-    start: 'top top',
-    end: 'bottom top',
-    onEnterBack: () => {
-      gsap.to(topBar, {
-        borderBottomWidth: '0',
-        color: 'white',
-        ease: 'power1.out'
-      })
-      gsap.to('#top-bar-menu > div', {
-        top: '-100%'
-      })
-      gsap.to('.menu-item', {
-        x: 0,
-        duration: 1
-      })
-    },
-    onLeave: () => {
-      gsap.to(topBar, {
-        borderBottomWidth: '3px',
-        color: color.primary,
-        ease: 'power1.out'
-      })
-      gsap.to('#top-bar-menu > div', {
-        top: 0,
-        ease: 'back.out',
-        stagger: 0.1
-      })
-      gsap.to(menuItemPortfolio, {
-        x: '148px'
-      })
-      gsap.to(menuItemResume, {
-        x: '-148px'
-      })
-    }
-  },
-  height: '3rem',
-  paddingLeft: 0,
-})
+const matchMedia = gsap.matchMedia()
 
-gsap.to(nameHeading, {
-    fontSize: '2rem',
+matchMedia.add('(min-width: 800px)', () => {
+  gsap.to(topBar, {
     scrollTrigger: {
-      scrub: true,
+      scrub: 0.5,
       trigger: '#menu-row',
       start: 'top top',
       end: 'bottom top',
-    }
+      onEnterBack: () => {
+        gsap.to(topBar, {
+          borderBottomWidth: '0',
+          color: 'white',
+          ease: 'power1.out'
+        })
+        gsap.to('#top-bar-menu > div', {
+          top: '-100%'
+        })
+        gsap.to('.menu-item', {
+          x: 0,
+          duration: 1
+        })
+      },
+      onLeave: () => {
+        gsap.to(topBar, {
+          borderBottomWidth: '3px',
+          color: color.primary,
+          ease: 'power1.out'
+        })
+        gsap.to('#top-bar-menu > div', {
+          top: 0,
+          ease: 'back.out',
+          stagger: 0.1
+        })
+        gsap.to(menuItemPortfolio, {
+          x: '148px'
+        })
+        gsap.to(menuItemResume, {
+          x: '-148px'
+        })
+      }
+    },
+    height: '3rem',
+    paddingLeft: 0,
+  })
+  
+  gsap.to(nameHeading, {
+      fontSize: '2rem',
+      scrollTrigger: {
+        scrub: true,
+        trigger: '#menu-row',
+        start: 'top top',
+        end: 'bottom top',
+      }
+  })
+})
+
+matchMedia.add('(orientation: portrait)', () => {
+  gsap.to('#flower-vase-container', {
+    borderWidth: 0
+  })
+
+  gsap.to('#flower-vase-container svg', {
+    height: 'auto',
+    width: '100vmin',
+    duration: 0
+  })
 })
 
 gsap.to('#flower-five', {
