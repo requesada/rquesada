@@ -13,22 +13,11 @@ const color = {
 
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
-
-// const setTopBarPadding = () => {
-//   const topBarWidth = topBar.getBoundingClientRect().width
-//   const nameWidth = nameHeading.getBoundingClientRect().width
-//   topBar.style.paddingLeft = `${(topBarWidth - nameWidth) / 2 + 4}px`
-// }
-// setTopBarPadding()
-// window.addEventListener('resize', () => {
-//   setTopBarPadding()
-// })
-
+const menuRow = document.querySelector('#menu-row')
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
 const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems]
-
 const sectionTitleNodes = document.querySelectorAll('.section-title')
 
 menuItemArray.forEach((element) => {
@@ -82,8 +71,15 @@ matchMedia.add('(min-width: 800px)', () => {
       onEnterBack: () => {
         gsap.to(topBar, {
           borderBottomWidth: '0',
+          paddingTop: '100px',
           color: 'white',
           ease: 'power1.out'
+        })
+        gsap.to(menuRow, {
+          marginTop: '100px'
+        })
+        gsap.to('#top-bar > h1', {
+          lineHeight: 1
         })
         gsap.to('#top-bar-menu > div', {
           top: '-100%'
@@ -96,8 +92,15 @@ matchMedia.add('(min-width: 800px)', () => {
       onLeave: () => {
         gsap.to(topBar, {
           borderBottomWidth: '3px',
+          paddingTop: 0,
           color: color.primary,
           ease: 'power1.out'
+        })
+        gsap.to(menuRow, {
+          marginTop: 0
+        })
+        gsap.to('#top-bar > h1', {
+          lineHeight: 'normal'
         })
         gsap.to('#top-bar-menu > div', {
           top: 0,
@@ -130,12 +133,6 @@ matchMedia.add('(min-width: 800px)', () => {
 matchMedia.add('(orientation: portrait)', () => {
   gsap.to('#flower-vase-container', {
     borderWidth: 0
-  })
-
-  gsap.to('#flower-vase-container svg', {
-    height: 'auto',
-    width: '100vmin',
-    duration: 0
   })
 })
 
