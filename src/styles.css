@@ -1,5 +1,4 @@
 :root {
-  --cuboid-width: 300px;
   --primary: #b8d6bc;
   --secondary: #002d7a;
   --main-visited-link: #889e8b;
@@ -163,6 +162,7 @@ p:first-child {
 }
 
 #flower-vase-container {
+  width: 100%;
   padding: 50px;
   border: 10px solid white;
   display: flex;
@@ -172,25 +172,21 @@ p:first-child {
   z-index: 5;
 
   svg {
-    max-width: 100%;
-    /* transform: scaleX(-1); */
-    /* transform: rotate(90deg); */
+    width: 100%;
+    height: auto;
+    border: 1px solid blue;
   }
 }
 
-/* @media (orientation: landscape) {
-  #flower-vase-container {
-    svg {
-      transform: scaleX(-1);
-    }
+@media (orientation: landscape) {
+  #upright-vase {
+    display: none;
   }
-} */
+}
 
 @media (orientation: portrait) {
-  #flower-vase-container {
-    svg {
-      transform: rotate(90deg);
-    }
+  #sideways-vase {
+    display: none;
   }
 }
 
