@@ -178,18 +178,18 @@ p:first-child {
   }
 }
 
-@media (orientation: landscape) {
+/* @media (orientation: landscape) {
   #flower-vase-container {
     svg {
       transform: scaleX(-1);
     }
   }
-}
+} */
 
 @media (orientation: portrait) {
   #flower-vase-container {
     svg {
-      transform: scaleX(-1) rotate(90deg);
+      transform: rotate(90deg);
     }
   }
 }
