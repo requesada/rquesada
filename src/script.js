@@ -69,20 +69,8 @@ matchMedia.add('(min-width: 800px)', () => {
       start: 'top top',
       end: 'bottom top',
       onEnterBack: () => {
-        gsap.to(topBar, {
-          borderBottomWidth: '0',
-          paddingTop: '100px',
-          color: 'white',
-          ease: 'power1.out'
-        })
-        gsap.to(menuRow, {
-          marginTop: '100px'
-        })
-        gsap.to('#top-bar > h1', {
-          lineHeight: 1
-        })
         gsap.to('#top-bar-menu > div', {
-          top: '-100%'
+          top: '-500%'
         })
         gsap.to('.menu-item', {
           x: 0,
@@ -90,33 +78,23 @@ matchMedia.add('(min-width: 800px)', () => {
         })
       },
       onLeave: () => {
-        gsap.to(topBar, {
-          borderBottomWidth: '3px',
-          paddingTop: 0,
-          color: color.primary,
-          ease: 'power1.out'
-        })
-        gsap.to(menuRow, {
-          marginTop: 0
-        })
-        gsap.to('#top-bar > h1', {
-          lineHeight: 'normal'
-        })
         gsap.to('#top-bar-menu > div', {
           top: 0,
-          ease: 'back.out',
+          ease: 'power4.out',
           stagger: 0.1
         })
         gsap.to(menuItemPortfolio, {
-          x: '148px'
+          x: '100%'
         })
         gsap.to(menuItemResume, {
-          x: '-148px'
+          x: '-100%'
         })
       }
     },
     height: '3rem',
-    paddingLeft: 0,
+    paddingTop: 0,
+    color: color.primary,
+    borderBottomWidth: '3px'
   })
   
   gsap.to(nameHeading, {
