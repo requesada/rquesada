@@ -160,6 +160,7 @@ p:first-child {
 }
 
 #flower-vase-container {
+  max-width: 900px;
   width: 100%;
   padding: 50px;
   border: 10px solid white;
