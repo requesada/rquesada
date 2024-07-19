@@ -92,6 +92,12 @@ p:first-child {
   padding-top: 100px;
 }
 
+@media (width <= 800px) {
+  #top-bar {
+    padding-top: 50px;
+  }
+}
+
 #top-bar-menu {
   height: 100%;
   display: inline-flex;

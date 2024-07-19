@@ -61,7 +61,7 @@ gsap.to('.menu-item', {
 
 const matchMedia = gsap.matchMedia()
 
-matchMedia.add('(min-width: 800px)', () => {
+// matchMedia.add('(min-width: 800px)', () => {
   gsap.to(topBar, {
     scrollTrigger: {
       scrub: 0.5,
@@ -106,7 +106,7 @@ matchMedia.add('(min-width: 800px)', () => {
         end: 'bottom top',
       }
   })
-})
+// })
 
 matchMedia.add('(orientation: portrait)', () => {
   gsap.to('#flower-vase-container', {
