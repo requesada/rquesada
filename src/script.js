@@ -47,8 +47,8 @@ menuItemArray.forEach((element) => {
   })
 })
 
-gsap.to('#top-bar h1', {
-  top: 0,
+gsap.to(nameHeading, {
+  top: 1,
   duration: 2,
   ease: 'power4.out'
 })
@@ -60,8 +60,7 @@ gsap.to('.menu-item', {
 })
 
 const matchMedia = gsap.matchMedia()
-
-// matchMedia.add('(min-width: 800px)', () => {
+matchMedia.add('(orientation: landscape)', () => {
   gsap.to(topBar, {
     scrollTrigger: {
       scrub: 0.5,
@@ -89,14 +88,14 @@ const matchMedia = gsap.matchMedia()
         gsap.to(menuItemResume, {
           x: '-100%'
         })
-      }
+      },
+      onRefresh: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
     },
     height: '3rem',
     paddingTop: 0,
     color: color.primary,
     borderBottomWidth: '3px'
   })
-  
   gsap.to(nameHeading, {
       fontSize: '2rem',
       scrollTrigger: {
@@ -106,11 +105,31 @@ const matchMedia = gsap.matchMedia()
         end: 'bottom top',
       }
   })
-// })
+})
 
 matchMedia.add('(orientation: portrait)', () => {
   gsap.to('#flower-vase-container', {
     borderWidth: 0
+  })
+  gsap.to(topBar, {
+    height: '3rem',
+    paddingTop: 0,
+    color: color.primary,
+    borderBottomWidth: '3px'
+  })
+  gsap.to(nameHeading, {
+    fontSize: '2rem'
+  })
+  gsap.to('#top-bar-menu > div', {
+    top: 0,
+    ease: 'power4.out',
+    stagger: 0.1
+  })
+  gsap.to(menuItemPortfolio, {
+    x: '100%'
+  })
+  gsap.to(menuItemResume, {
+    x: '-100%'
   })
 })
 
