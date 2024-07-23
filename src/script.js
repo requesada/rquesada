@@ -136,11 +136,19 @@ matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
 
 matchMedia.add('(max-width: 699px)', () => {
   gsap.to(nameHeading, {
-    text: {
-      duration: 0.25,
-      value: 'RQuesada',
-      ease: 'none'
-    }
+    duration: 0,
+    text: 'RQuesada',
+    ease: 'none'
+  })
+})
+
+matchMedia.add('(max-width: 550px)', () => {
+  gsap.to(['#top-bar-portfolio', '#top-bar-resume'], {
+    display: 'none',
+    duration: 0
+  })
+  gsap.to('#top-bar-more', {
+    display: 'block'
   })
 })
 

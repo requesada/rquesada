@@ -106,6 +106,10 @@ p:first-child {
   text-align: center;
 }
 
+#top-bar-more {
+  display: none;
+}
+
 .top-bar-menu-item {
   display: inline-flex;
   align-items: center;
