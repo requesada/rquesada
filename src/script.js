@@ -1,10 +1,12 @@
 // import {gsap} from 'gsap'
 // import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
 // import {ScrollTrigger} from 'gsap/ScrollTrigger'
+// import {TextPlugin} from 'gsap/TextPlugin'
 import gsap from 'https://cdn.skypack.dev/gsap'
 import ScrollToPlugin from 'https://cdn.skypack.dev/gsap/ScrollToPlugin'
 import ScrollTrigger from 'https://cdn.skypack.dev/gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
+import TextPlugin from 'https://cdn.skypack.dev/gsap/TextPlugin'
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, TextPlugin)
 
 const color = {
   primary: '#b8d6bc',
@@ -88,8 +90,7 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
         gsap.to(menuItemResume, {
           x: '-100%'
         })
-      },
-      onRefresh: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
+      }
     },
     height: '3rem',
     paddingTop: 0,
@@ -130,6 +131,16 @@ matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   })
   gsap.to(menuItemResume, {
     x: '-100%'
+  })
+})
+
+matchMedia.add('(max-width: 699px)', () => {
+  gsap.to(nameHeading, {
+    text: {
+      duration: 0.25,
+      value: 'RQuesada',
+      ease: 'none'
+    }
   })
 })
 
