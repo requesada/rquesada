@@ -60,7 +60,7 @@ gsap.to('.menu-item', {
 })
 
 const matchMedia = gsap.matchMedia()
-matchMedia.add('(orientation: landscape)', () => {
+matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
   gsap.to(topBar, {
     scrollTrigger: {
       scrub: 0.5,
@@ -107,7 +107,7 @@ matchMedia.add('(orientation: landscape)', () => {
   })
 })
 
-matchMedia.add('(orientation: portrait)', () => {
+matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   gsap.to('#flower-vase-container', {
     borderWidth: 0
   })
