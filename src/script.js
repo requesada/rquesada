@@ -18,9 +18,30 @@ const nameHeading = document.querySelector('#top-bar h1')
 const menuRow = document.querySelector('#menu-row')
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
+const topBarMore = document.querySelector('#top-bar-more')
+const dropdown = document.querySelector('#dropdown')
+
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
 const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems]
 const sectionTitleNodes = document.querySelectorAll('.section-title')
+
+let isDropdownOpen = false
+const dropdownOpen = gsap.to(dropdown, {
+  display: 'block',
+  paused: true,
+  onComplete: () => {
+    isDropdownOpen = true
+  }
+})
+
+topBarMore.addEventListener('click', () => {
+  if (dropdownOpen.isActive() || isDropdownOpen) {
+    dropdownOpen.pause(0)
+    isDropdownOpen = false
+  } else {
+    dropdownOpen.play()
+  }
+})
 
 menuItemArray.forEach((element) => {
   const menuItemAnimation = gsap.to(element, {
