@@ -22,10 +22,23 @@ const topBarMore = document.querySelector('#top-bar-more')
 const dropdown = document.querySelector('#dropdown')
 
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
-const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems]
+const dropdownMenuItems = document.querySelectorAll('.dropdown-menu-item')
+const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems, ...dropdownMenuItems]
 const sectionTitleNodes = document.querySelectorAll('.section-title')
 
 let isDropdownOpen = false
+
+const closeDropdown = () => {
+  dropdownOpen.pause(0)
+    isDropdownOpen = false
+}
+
+document.addEventListener('click', (event) => {
+  if (isDropdownOpen && (!dropdown.contains(event.target) || topBarMore.contains(event.target))) {
+    closeDropdown()
+  }
+})
+
 const dropdownOpen = gsap.to(dropdown, {
   display: 'block',
   paused: true,
@@ -36,8 +49,7 @@ const dropdownOpen = gsap.to(dropdown, {
 
 topBarMore.addEventListener('click', () => {
   if (dropdownOpen.isActive() || isDropdownOpen) {
-    dropdownOpen.pause(0)
-    isDropdownOpen = false
+    closeDropdown()
   } else {
     dropdownOpen.play()
   }

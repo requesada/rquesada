@@ -135,8 +135,16 @@ ul {
   display: none;
   position: absolute;
   z-index: 20;
-  right: 60px;
-  background-color: red;
+  right: 70px;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  li {
+    font-size: 1.6rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    user-select: none;
+    color: var(--primary)
+  }
 }
 
 #menu-row {
