@@ -77,6 +77,12 @@ p:first-child {
   margin-top: -0.3rem;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
 #top-bar, #flower-vase-container, .menu-item {
   box-sizing: border-box;
 }
@@ -123,6 +129,14 @@ p:first-child {
 
 #top-bar-arrow {
   font-weight: bold;
+}
+
+#dropdown {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  right: 60px;
+  background-color: red;
 }
 
 #menu-row {
