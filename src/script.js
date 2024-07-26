@@ -33,8 +33,8 @@ const closeDropdown = () => {
     isDropdownOpen = false
 }
 
-document.addEventListener('click', (event) => {
-  if (isDropdownOpen && (!dropdown.contains(event.target) || topBarMore.contains(event.target))) {
+document.addEventListener('click', () => {
+  if (isDropdownOpen) {
     closeDropdown()
   }
 })
@@ -76,7 +76,7 @@ menuItemArray.forEach((element) => {
       ease: 'power2.out',
       scrollTo: {
         y: identifier === 'arrow' ? 0 : sectionElement,
-        offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') ? 100 : 200
+        offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') || element.className.includes('dropdown') ? 100 : 200
       }
     })
   })
