@@ -8,6 +8,41 @@ import ScrollTrigger from 'https://cdn.skypack.dev/gsap/ScrollTrigger'
 import TextPlugin from 'https://cdn.skypack.dev/gsap/TextPlugin'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, TextPlugin)
 
+let initialLoad = true
+const onResize = () => {
+  if (initialLoad) {
+    initialLoad = false
+    return
+  }
+
+  matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
+    gsap.to('#flower-vase-container', {
+      borderWidth: 0
+    })
+    gsap.to(topBar, {
+      height: '3rem',
+      paddingTop: 0,
+      color: color.primary,
+      borderBottomWidth: '3px'
+    })
+    gsap.to(nameHeading, {
+      fontSize: '2rem'
+    })
+    gsap.to('#top-bar-menu > div', {
+      top: 0,
+      ease: 'power4.out',
+      stagger: 0.1
+    })
+    gsap.to(menuItemPortfolio, {
+      x: '100%'
+    })
+    gsap.to(menuItemResume, {
+      x: '-100%'
+    })
+  })
+}
+window.addEventListener('resize', onResize)
+
 const color = {
   primary: '#b8d6bc',
   secondary: '#002d7a'
@@ -138,32 +173,6 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
         start: 'top top',
         end: 'bottom top',
       }
-  })
-})
-
-matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
-  gsap.to('#flower-vase-container', {
-    borderWidth: 0
-  })
-  gsap.to(topBar, {
-    height: '3rem',
-    paddingTop: 0,
-    color: color.primary,
-    borderBottomWidth: '3px'
-  })
-  gsap.to(nameHeading, {
-    fontSize: '2rem'
-  })
-  gsap.to('#top-bar-menu > div', {
-    top: 0,
-    ease: 'power4.out',
-    stagger: 0.1
-  })
-  gsap.to(menuItemPortfolio, {
-    x: '100%'
-  })
-  gsap.to(menuItemResume, {
-    x: '-100%'
   })
 })
 
