@@ -166,6 +166,12 @@ ul {
   cursor: pointer;
 }
 
+@media ((orientation: portrait) or (max-width: 699px)) {
+  .menu-item {
+    display: none
+  }
+}
+
 #menu-item-portfolio {
   transform: translateX(148px);
   justify-self: end;
@@ -221,6 +227,10 @@ ul {
 
   #flower-vase-container {
     padding: 50px 10px;
+  }
+
+  #menu-row {
+    margin-bottom: 0;
   }
 }
 
