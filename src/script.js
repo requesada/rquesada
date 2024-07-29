@@ -53,6 +53,10 @@ const switchToTopBar = () => {
     duration: 2,
     ease: 'power4.out'
   })
+  gsap.to('#top-bar-menu', {
+    top: 0,
+    duration: 0
+  })
   gsap.to('#top-bar-menu > div', {
     top: 0,
     ease: 'power4.out',

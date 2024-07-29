@@ -110,6 +110,7 @@ ul {
   position: absolute;
   right: 0;
   text-align: center;
+  top: -500%;
 }
 
 #top-bar-more {
