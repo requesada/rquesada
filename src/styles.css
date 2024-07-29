@@ -98,9 +98,9 @@ ul {
   padding-top: 100px;
 }
 
-@media (width <= 800px) {
+@media (width <= 700px) {
   #top-bar {
-    padding-top: 50px;
+    padding-top: 0;
   }
 }
 
@@ -166,12 +166,6 @@ ul {
   cursor: pointer;
 }
 
-@media ((orientation: portrait) or (max-width: 699px)) {
-  .menu-item {
-    display: none
-  }
-}
-
 #menu-item-portfolio {
   transform: translateX(148px);
   justify-self: end;
@@ -191,7 +185,7 @@ ul {
   border-right: 10px solid white;
   border-bottom: 10px solid white; */
   border-radius: 0 100px 100px 0;
-
+  
   h2 {
     transform: rotate(90deg);
   }
@@ -207,10 +201,20 @@ ul {
   align-items: center;
   background-color: black;
   z-index: 5;
-
+  
   svg {
     width: 100%;
     height: auto;
+  }
+}
+
+@media ((orientation: portrait) or (max-width: 699px)) {
+  .menu-item {
+    display: none
+  }
+
+  #flower-vase-container {
+    border-width: 0;
   }
 }
 

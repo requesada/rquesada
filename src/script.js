@@ -8,45 +8,17 @@ import ScrollTrigger from 'https://cdn.skypack.dev/gsap/ScrollTrigger'
 import TextPlugin from 'https://cdn.skypack.dev/gsap/TextPlugin'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, TextPlugin)
 
-let initialLoad = true
-const onResize = () => {
-  if (initialLoad) {
-    initialLoad = false
-    return
-  }
-
-  matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
-    gsap.to('#flower-vase-container', {
-      borderWidth: 0
-    })
-    gsap.to(topBar, {
-      height: '3rem',
-      paddingTop: 0,
-      color: color.primary,
-      borderBottomWidth: '3px'
-    })
-    gsap.to(nameHeading, {
-      fontSize: '2rem'
-    })
-    gsap.to('#top-bar-menu > div', {
-      top: 0,
-      ease: 'power4.out',
-      stagger: 0.1
-    })
-    gsap.to(menuItemPortfolio, {
-      x: '100%'
-    })
-    gsap.to(menuItemResume, {
-      x: '-100%'
-    })
-  })
-}
-window.addEventListener('resize', onResize)
+const matchMedia = gsap.matchMedia()
 
 const color = {
   primary: '#b8d6bc',
   secondary: '#002d7a'
 }
+
+let initialLoad = true
+window.addEventListener('resize', () => {
+  initialLoad = false
+})
 
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
@@ -62,6 +34,72 @@ const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems, ..
 const sectionTitleNodes = document.querySelectorAll('.section-title')
 
 let isDropdownOpen = false
+
+nameHeading.innerText = 'Roberto Quesada'
+
+const switchToTopBar = () => {
+  gsap.to(topBar, {
+    height: '3rem',
+    paddingTop: 0,
+    color: color.primary,
+    borderBottomWidth: '3px'
+  })
+  gsap.to(nameHeading, {
+    fontSize: '2rem',
+    duration: 0
+  })
+  gsap.to(nameHeading, {
+    top: 1,
+    duration: 2,
+    ease: 'power4.out'
+  })
+  gsap.to('#top-bar-menu > div', {
+    top: 0,
+    ease: 'power4.out',
+    stagger: 0.1
+  })
+  gsap.to(menuItemPortfolio, {
+    x: '100%'
+  })
+  gsap.to(menuItemResume, {
+    x: '-100%'
+  })
+}
+
+const initialTopBar = () => {
+  gsap.to(topBar, {
+    height: '3rem',
+    paddingTop: 0,
+    color: color.primary,
+    borderBottomWidth: '3px',
+    duration: 0
+  })
+  gsap.to(nameHeading, {
+    fontSize: '2rem',
+    top: 1,
+    duration: 0
+  })
+  gsap.to('#top-bar-menu > div', {
+    top: 0,
+    duration: 0
+  })
+  gsap.to(menuItemPortfolio, {
+    x: '100%',
+    duration: 0
+  })
+  gsap.to(menuItemResume, {
+    x: '-100%',
+    duration: 0
+  })
+}
+
+matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
+  if (!initialLoad) {
+    switchToTopBar()
+  } else {
+    initialTopBar()
+  }
+})
 
 const closeDropdown = () => {
   dropdownOpen.pause(0)
@@ -117,19 +155,6 @@ menuItemArray.forEach((element) => {
   })
 })
 
-gsap.to(nameHeading, {
-  top: 1,
-  duration: 2,
-  ease: 'power4.out'
-})
-
-gsap.to('.menu-item', {
-  x: 0,
-  duration: 2,
-  ease: 'power4.out'
-})
-
-const matchMedia = gsap.matchMedia()
 matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
   gsap.to(topBar, {
     scrollTrigger: {
@@ -173,6 +198,16 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
         start: 'top top',
         end: 'bottom top',
       }
+  })
+  gsap.to(nameHeading, {
+    top: 1,
+    duration: 2,
+    ease: 'power4.out'
+  })
+  gsap.to('.menu-item', {
+    x: 0,
+    duration: 2,
+    ease: 'power4.out'
   })
 })
 
