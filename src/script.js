@@ -83,6 +83,10 @@ const initialTopBar = () => {
     top: 1,
     duration: 0
   })
+  gsap.to('#top-bar-menu', {
+    top: 0,
+    duration: 0
+  })
   gsap.to('#top-bar-menu > div', {
     top: 0,
     duration: 0
@@ -167,6 +171,10 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
       start: 'top top',
       end: 'bottom top',
       onEnterBack: () => {
+        gsap.to('#top-bar-menu', {
+          top: '-500%',
+          duration: 0
+        })
         gsap.to('#top-bar-menu > div', {
           top: '-500%'
         })
@@ -176,6 +184,10 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
         })
       },
       onLeave: () => {
+        gsap.to('#top-bar-menu', {
+          top: 0,
+          duration: 0
+        })
         gsap.to('#top-bar-menu > div', {
           top: 0,
           ease: 'power4.out',
