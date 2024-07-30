@@ -22,15 +22,18 @@ window.addEventListener('resize', () => {
 
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
-const menuRow = document.querySelector('#menu-row')
+// const menuRow = document.querySelector('#menu-row')
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
 const topBarMore = document.querySelector('#top-bar-more')
 const dropdown = document.querySelector('#dropdown')
+const slideButtonLeft = document.querySelector('.slide-button.left')
+const slideButtonRight = document.querySelector('.slide-button.right')
 
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
 const dropdownMenuItems = document.querySelectorAll('.dropdown-menu-item')
-const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems, ...dropdownMenuItems]
+const slideButtons = document.querySelectorAll('.slide-button')
+const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems, ...dropdownMenuItems, ...slideButtons]
 const sectionTitleNodes = document.querySelectorAll('.section-title')
 
 let isDropdownOpen = false
@@ -101,12 +104,64 @@ const initialTopBar = () => {
   })
 }
 
+let showcaseSlideIndex = 0
+const showSlide = (currentSlideIndex) => {
+  const slides = document.querySelectorAll('.showcase-gif')
+  if (currentSlideIndex === 'all') {
+    showcaseSlideIndex = 0
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'block'
+      gsap.to(slides[i], {
+        opacity: 1,
+        duration: 0
+      })
+    }
+    for (let i = 0; i < slideButtons.length; i++) {
+      slideButtons[i].style.display = 'none'
+    }
+  } else {
+    if (currentSlideIndex > slides.length - 1) {showcaseSlideIndex = 0}
+    if (currentSlideIndex < 0) {showcaseSlideIndex = slides.length - 1}
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none'
+      gsap.to(slides[i], {
+        opacity: 0,
+        duration: 0,
+        ease: 'none'
+      })
+    }
+    for (let i = 0; i < slideButtons.length; i++) {
+      slideButtons[i].style.display = 'flex'
+    }
+    slides[showcaseSlideIndex].style.display = 'block'
+    gsap.to(slides[showcaseSlideIndex], {
+      opacity: 1,
+      duration: 0.5
+    })
+    const slideLocation = slides[showcaseSlideIndex].src
+    // Reset location to start gif from beginning
+    slides[showcaseSlideIndex].src = ''
+    slides[showcaseSlideIndex].src = slideLocation
+  }
+}
+
+const changeSlide = (increment) => {
+  showSlide(showcaseSlideIndex += increment)
+}
+slideButtonLeft.addEventListener('click', () => {
+  changeSlide(-1)
+})
+slideButtonRight.addEventListener('click', () => {
+  changeSlide(1)
+})
+
 matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   if (!initialLoad) {
     switchToTopBar()
   } else {
     initialTopBar()
   }
+  showSlide(showcaseSlideIndex)
 })
 
 const closeDropdown = () => {
@@ -225,6 +280,7 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
     duration: 2,
     ease: 'power4.out'
   })
+  showSlide('all')
 })
 
 matchMedia.add('(max-width: 699px)', () => {
