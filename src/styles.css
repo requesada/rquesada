@@ -281,24 +281,6 @@ ul {
   }
 }
 
-@media ((orientation: portrait) or (max-width: 699px)) {
-  .menu-item {
-    display: none
-  }
-
-  #flower-vase-container {
-    border-width: 0;
-  }
-
-  #pb-front-showcase {
-    justify-content: center;
-
-    img {
-      max-width: 73%;
-    }
-  }
-}
-
 .slide-button {
   display: flex;
   justify-content: center;
@@ -316,10 +298,28 @@ ul {
   width: 100%;
   justify-content: space-around;
   margin-bottom: 40px;
-
+  
   img {
     max-width: 20%;
     border-radius: 14px;
+  }
+}
+
+@media ((orientation: portrait) or (max-width: 699px)) {
+  .menu-item {
+    display: none
+  }
+
+  #flower-vase-container {
+    border-width: 0;
+  }
+
+  #pb-front-showcase {
+    justify-content: center;
+
+    img {
+      max-width: 73%;
+    }
   }
 }
 

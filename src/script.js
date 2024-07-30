@@ -155,6 +155,8 @@ slideButtonRight.addEventListener('click', () => {
   changeSlide(1)
 })
 
+// TODO: Block screens
+
 matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   if (!initialLoad) {
     switchToTopBar()
