@@ -335,21 +335,13 @@ ul {
     margin-bottom: 1.5rem;
   }
 
-  #pb-front-showcase {
+  #pb-front-showcase, #block-screens {
+    max-width: 490px;
+    margin: 0 auto 60px auto;
     justify-content: center;
-
     img {
       max-width: 73%;
     }
-  }
-
-  #block-screens {
-    justify-content: center;
-
-    img {
-      max-width: 73%;
-    }
-
     .slide-button {
       max-width: 10%;
     }
