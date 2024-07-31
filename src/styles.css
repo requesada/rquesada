@@ -326,7 +326,11 @@ ul {
     justify-content: center;
 
     img {
-      max-width: 73%;
+      max-width: 343px;
+    }
+
+    .slide-button {
+      max-width: 10%;
     }
   }
 }
