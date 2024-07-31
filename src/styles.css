@@ -319,15 +319,16 @@ ul {
   }
 
   .pb-box-left, .pb-box-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
 
     img {
       float: none;
     }
+  }
+
+  .pb-box-left:has(img:first-child), .pb-box-right:has(img:first-child) {
+    display: flex;
+    justify-content: center;
   }
 
   #pb-title {
