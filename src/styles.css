@@ -321,6 +321,14 @@ ul {
       max-width: 73%;
     }
   }
+
+  #block-screens {
+    justify-content: center;
+
+    img {
+      max-width: 73%;
+    }
+  }
 }
 
 .resume-section {

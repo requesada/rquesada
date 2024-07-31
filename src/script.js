@@ -27,8 +27,10 @@ const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
 const topBarMore = document.querySelector('#top-bar-more')
 const dropdown = document.querySelector('#dropdown')
-const slideButtonLeft = document.querySelector('.slide-button.left')
-const slideButtonRight = document.querySelector('.slide-button.right')
+const slideButtonShowcaseLeft = document.querySelector('.slide-button.showcase.left')
+const slideButtonShowcaseRight = document.querySelector('.slide-button.showcase.right')
+const slideButtonBlockScreenLeft = document.querySelector('.slide-button.block-screen.left')
+const slideButtonBlockScreenRight = document.querySelector('.slide-button.block-screen.right')
 
 const topBarMenuItems = document.querySelectorAll('.top-bar-menu-item')
 const dropdownMenuItems = document.querySelectorAll('.dropdown-menu-item')
@@ -104,11 +106,18 @@ const initialTopBar = () => {
   })
 }
 
-let showcaseSlideIndex = 0
-const showSlide = (currentSlideIndex) => {
-  const slides = document.querySelectorAll('.showcase-gif')
+const slideIndices = {
+  showcaseSlideIndex: 0,
+  blockScreensIndex: 0
+}
+const showSlide = (currentSlideIndex, selector) => {
+  let indexKey = 'showcaseSlideIndex' // default
+  if (selector === '.block-screen-gif') {
+    indexKey = 'blockScreensIndex'
+  }
+  const slides = document.querySelectorAll(selector)
   if (currentSlideIndex === 'all') {
-    showcaseSlideIndex = 0
+    slideIndices[indexKey] = 0
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = 'block'
       gsap.to(slides[i], {
@@ -120,8 +129,8 @@ const showSlide = (currentSlideIndex) => {
       slideButtons[i].style.display = 'none'
     }
   } else {
-    if (currentSlideIndex > slides.length - 1) {showcaseSlideIndex = 0}
-    if (currentSlideIndex < 0) {showcaseSlideIndex = slides.length - 1}
+    if (currentSlideIndex > slides.length - 1) {slideIndices[indexKey] = 0}
+    if (currentSlideIndex < 0) {slideIndices[indexKey] = slides.length - 1}
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = 'none'
       gsap.to(slides[i], {
@@ -133,26 +142,38 @@ const showSlide = (currentSlideIndex) => {
     for (let i = 0; i < slideButtons.length; i++) {
       slideButtons[i].style.display = 'flex'
     }
-    slides[showcaseSlideIndex].style.display = 'block'
-    gsap.to(slides[showcaseSlideIndex], {
+    slides[slideIndices[indexKey]].style.display = 'block'
+    gsap.to(slides[slideIndices[indexKey]], {
       opacity: 1,
       duration: 0.5
     })
-    const slideLocation = slides[showcaseSlideIndex].src
+    const slideLocation = slides[slideIndices[indexKey]].src
     // Reset location to start gif from beginning
-    slides[showcaseSlideIndex].src = ''
-    slides[showcaseSlideIndex].src = slideLocation
+    slides[slideIndices[indexKey]].src = ''
+    slides[slideIndices[indexKey]].src = slideLocation
   }
 }
 
-const changeSlide = (increment) => {
-  showSlide(showcaseSlideIndex += increment)
+const changeSlide = (increment, indexKey) => {
+  let selector = ''
+  if (indexKey === 'showcaseSlideIndex') {
+    selector = '.showcase-gif'
+  } else {
+    selector = '.block-screen-gif'
+  }
+  showSlide(slideIndices[indexKey] += increment, selector)
 }
-slideButtonLeft.addEventListener('click', () => {
-  changeSlide(-1)
+slideButtonShowcaseLeft.addEventListener('click', () => {
+  changeSlide(-1, 'showcaseSlideIndex')
 })
-slideButtonRight.addEventListener('click', () => {
-  changeSlide(1)
+slideButtonShowcaseRight.addEventListener('click', () => {
+  changeSlide(1, 'showcaseSlideIndex')
+})
+slideButtonBlockScreenLeft.addEventListener('click', () => {
+  changeSlide(-1, 'blockScreensIndex')
+})
+slideButtonBlockScreenRight.addEventListener('click', () => {
+  changeSlide(1, 'blockScreensIndex')
 })
 
 // TODO: Block screens
@@ -163,7 +184,8 @@ matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   } else {
     initialTopBar()
   }
-  showSlide(showcaseSlideIndex)
+  showSlide(slideIndices['showcaseSlideIndex'], '.showcase-gif')
+  showSlide(slideIndices['blockScreensIndex'], '.block-screen-gif')
 })
 
 const closeDropdown = () => {
@@ -282,7 +304,8 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
     duration: 2,
     ease: 'power4.out'
   })
-  showSlide('all')
+  showSlide('all', '.showcase-gif')
+  showSlide('all', '.block-screen-gif')
 })
 
 matchMedia.add('(max-width: 699px)', () => {
