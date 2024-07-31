@@ -38,6 +38,22 @@ const slideButtons = document.querySelectorAll('.slide-button')
 const menuItemArray = [menuItemPortfolio, menuItemResume, ...topBarMenuItems, ...dropdownMenuItems, ...slideButtons]
 const sectionTitleNodes = document.querySelectorAll('.section-title')
 
+const pbIntro = document.querySelector('.pb-box:first-child')
+const pbIntroOriginalContent = pbIntro.innerHTML
+const swapPbIntro = () => {
+  const pbIntroLeft = document.querySelector('.pb-box:first-child > .pb-box-left')
+  const pbIntroRight = document.querySelector('.pb-box:first-child > .pb-box-right')
+  const pbIntroLeftContents = document.querySelectorAll('.pb-box:first-child > .pb-box-left > *')
+  const pbIntroRightContents = document.querySelectorAll('.pb-box:first-child > .pb-box-right > *')
+  const [pbIntroTitle, ...rest] = pbIntroLeftContents
+  
+  pbIntroLeft.innerHTML = pbIntroTitle.outerHTML + pbIntroRightContents[0].outerHTML
+  pbIntroRight.innerHTML = Array.from(rest).map((element) => element.outerHTML).join('')
+}
+const restorePbIntro = () => {
+  pbIntro.innerHTML = pbIntroOriginalContent
+}
+
 let isDropdownOpen = false
 
 nameHeading.innerText = 'Roberto Quesada'
@@ -186,6 +202,7 @@ matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   }
   showSlide(slideIndices['showcaseSlideIndex'], '.showcase-gif')
   showSlide(slideIndices['blockScreensIndex'], '.block-screen-gif')
+  swapPbIntro()
 })
 
 const closeDropdown = () => {
@@ -306,6 +323,7 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
   })
   showSlide('all', '.showcase-gif')
   showSlide('all', '.block-screen-gif')
+  restorePbIntro()
 })
 
 matchMedia.add('(max-width: 699px)', () => {
