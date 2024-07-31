@@ -314,6 +314,26 @@ ul {
     border-width: 0;
   }
 
+  .pb-box {
+    flex-direction: column;
+  }
+
+  .pb-box-left, .pb-box-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    img {
+      float: none;
+    }
+  }
+
+  #pb-title {
+    margin-bottom: 1.5rem;
+  }
+
   #pb-front-showcase {
     justify-content: center;
 
@@ -326,16 +346,12 @@ ul {
     justify-content: center;
 
     img {
-      max-width: 343px;
+      max-width: 73%;
     }
 
     .slide-button {
       max-width: 10%;
     }
-  }
-  
-  #pb-title {
-    margin-bottom: 1.5rem;
   }
 }
 
