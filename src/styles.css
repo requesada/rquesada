@@ -355,3 +355,7 @@ ul {
     margin-bottom: 10px;
   }
 }
+
+.work-entry, .education-entry {
+  font-size: 1.8rem;
+}
