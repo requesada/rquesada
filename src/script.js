@@ -253,7 +253,7 @@ menuItemArray.forEach((element) => {
       ease: 'power2.out',
       scrollTo: {
         y: identifier === 'arrow' ? 0 : sectionElement,
-        offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') || element.className.includes('dropdown') ? 100 : 200
+        offsetY: identifier === 'arrow' ? 0 : element.id.includes('top') || element.className.includes('dropdown') ? 100 : 250
       }
     })
   })
