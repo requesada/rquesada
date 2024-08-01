@@ -243,6 +243,7 @@ menuItemArray.forEach((element) => {
 
   element.addEventListener('mouseenter', () => menuItemAnimation.play())
   element.addEventListener('mouseleave', () => menuItemAnimation.reverse())
+  element.addEventListener('touchstart', () => menuItemAnimation.play().then(() => {menuItemAnimation.reverse()}))
   
   const identifier = element.id.split('-')[2]
   const sectionElement = Array.from(sectionTitleNodes).find((node) => node.innerText.toLowerCase() === element.innerText.toLowerCase())
