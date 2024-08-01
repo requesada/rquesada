@@ -358,4 +358,32 @@ ul {
 
 .work-entry, .education-entry {
   font-size: 1.8rem;
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+.company, .duration, .institution, .year {
+  color: var(--primary)
+}
+
+.job-title, .degree {
+  font-weight: bold;
+}
+
+@media (max-width: 859px) {
+  .work-entry, .education-entry {
+    margin-bottom: 20px;
+
+    span {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .job-title, .degree {
+    white-space: normal !important;
+  }
 }
