@@ -383,7 +383,7 @@ ul {
 }
 
 @media (max-width: 575px) {
-  .resume-section {
+  #pb-title, .resume-section {
     h3 {
       font-size: 2.4rem;
       line-height: 1;

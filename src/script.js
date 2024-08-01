@@ -265,7 +265,7 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
       scrub: 0.5,
       trigger: '#menu-row',
       start: 'top top',
-      end: 'bottom top',
+      end: '40% top',
       onEnterBack: () => {
         gsap.to('#top-bar-menu', {
           top: '-500%',
