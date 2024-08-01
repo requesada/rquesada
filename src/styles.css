@@ -137,7 +137,7 @@ ul {
   position: fixed;
   z-index: 20;
   right: 70px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 
   li {
     font-size: 1.6rem;
