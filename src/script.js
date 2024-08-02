@@ -1,11 +1,9 @@
-// import {gsap} from 'gsap'
-// import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
-// import {ScrollTrigger} from 'gsap/ScrollTrigger'
-// import {TextPlugin} from 'gsap/TextPlugin'
-import gsap from 'https://cdn.skypack.dev/gsap'
-import ScrollToPlugin from 'https://cdn.skypack.dev/gsap/ScrollToPlugin'
-import ScrollTrigger from 'https://cdn.skypack.dev/gsap/ScrollTrigger'
-import TextPlugin from 'https://cdn.skypack.dev/gsap/TextPlugin'
+import {gsap} from 'gsap'
+import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import {TextPlugin} from 'gsap/TextPlugin'
+import './styles.css'
+
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, TextPlugin)
 
 const matchMedia = gsap.matchMedia()
@@ -22,7 +20,6 @@ window.addEventListener('resize', () => {
 
 const topBar = document.querySelector('#top-bar')
 const nameHeading = document.querySelector('#top-bar h1')
-// const menuRow = document.querySelector('#menu-row')
 const menuItemPortfolio = document.querySelector('#menu-item-portfolio')
 const menuItemResume = document.querySelector('#menu-item-resume')
 const topBarMore = document.querySelector('#top-bar-more')
@@ -192,8 +189,6 @@ slideButtonBlockScreenRight.addEventListener('click', () => {
   changeSlide(1, 'blockScreensIndex')
 })
 
-// TODO: Block screens
-
 matchMedia.add('(orientation: portrait) or (max-width: 699px)', () => {
   if (!initialLoad) {
     switchToTopBar()
@@ -309,7 +304,7 @@ matchMedia.add('(orientation: landscape) and (min-width: 700px)', () => {
         scrub: true,
         trigger: '#menu-row',
         start: 'top top',
-        end: 'bottom top',
+        end: '40% top',
       }
   })
   gsap.to(nameHeading, {
