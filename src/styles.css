@@ -123,22 +123,18 @@ ul {
   position: relative;
   top: -500%;
   font-size: 2rem;
-  padding: 0 1rem;
+  padding: 0 0.25rem;
   cursor: pointer;
   user-select: none;
+  padding-top: 1px;
 
   svg {
     height: 1.4rem;
-    margin-top: 14px;
 
     path {
       fill: var(--primary);
     }
   }
-}
-
-#top-bar-arrow {
-  font-weight: bold;
 }
 
 #dropdown {
@@ -179,9 +175,6 @@ ul {
 #menu-item-portfolio {
   transform: translateX(148px);
   justify-self: end;
-  /* border-top: 10px solid white;
-  border-bottom: 10px solid white;
-  border-left: 10px solid white; */
   border-radius: 100px 0 0 100px;
   
   h2 {
@@ -191,9 +184,6 @@ ul {
 
 #menu-item-resume {
   transform: translateX(-148px);
-  /* border-top: 10px solid white;
-  border-right: 10px solid white;
-  border-bottom: 10px solid white; */
   border-radius: 0 100px 100px 0;
   
   h2 {
@@ -294,7 +284,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 2rem;
   user-select: none;
   cursor: pointer;
   padding: 0 10px;
