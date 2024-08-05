@@ -115,6 +115,7 @@ ul {
 
 #top-bar-more {
   display: none;
+  padding-top: 2px;
 }
 
 .top-bar-menu-item {
@@ -123,10 +124,9 @@ ul {
   position: relative;
   top: -500%;
   font-size: 2rem;
-  padding: 0 0.25rem;
+  padding: 0 1rem;
   cursor: pointer;
   user-select: none;
-  padding-top: 1px;
 
   svg {
     height: 1.4rem;
@@ -137,8 +137,15 @@ ul {
   }
 }
 
-#top-bar-more {
-  padding-top: 2px;
+#top-bar-github, #top-bar-arrow {
+  padding-top: 6px;
+}
+
+@media (max-width: 550px) {
+  .top-bar-menu-item {
+    padding: 0 0.25rem;
+    padding-top: 1px !important;
+  }
 }
 
 #dropdown {

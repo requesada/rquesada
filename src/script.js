@@ -335,7 +335,7 @@ matchMedia.add('(max-width: 550px)', () => {
     display: 'none',
     duration: 0
   })
-  gsap.to('#top-bar-more', {
+  gsap.to(topBarMore, {
     display: 'block'
   })
 })
