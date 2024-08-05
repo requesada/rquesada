@@ -96,6 +96,8 @@ ul {
   border-bottom-color: var(--secondary);
   border-bottom-width: 0;
   padding-top: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (width <= 700px) {
@@ -107,9 +109,7 @@ ul {
 #top-bar-menu {
   height: 100%;
   display: inline-flex;
-  position: absolute;
   right: 0;
-  text-align: center;
   top: -500%;
 }
 
