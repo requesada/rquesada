@@ -137,6 +137,10 @@ ul {
   }
 }
 
+#top-bar-more {
+  padding-top: 2px;
+}
+
 #dropdown {
   display: none;
   position: fixed;
